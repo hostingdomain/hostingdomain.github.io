@@ -1,0 +1,27 @@
+<form name="ss-contact-form">
+  <div class="col-lg-6">
+        <input type="text" name="name" id="name" placeholder="Name" autocomplete="on" required>
+        <input type="email" name="email" id="email" pattern="[^ @]*@[^ @]*" placeholder="Your Email" required="">
+        <input type="text" name="subject" id="subject" placeholder="Subject" autocomplete="on">
+  </div>
+  <div class="col-lg-6">
+      <textarea name="message" type="text" id="message" class="form-control" placeholder="Message" required=""></textarea>  
+  </div>
+  <div class="col-lg-12">
+      <button type="submit" class="main-button ">Send Message Now</button>
+  </div>
+</form>
+
+<script>
+ window.addEventListener("load", function(){
+   const scriptURL = 'https://script.google.com/macros/s/AKfycbxLDtY5C2X39fI_-l8JTqwCufUsDlxfIa9k6liLxbulmBXh1Zt3nuyww5IU2gWHc08E/exec';
+   const form = document.forms['ss-contact-form']
+  
+    form.addEventListener('submit', e => {
+      e.preventDefault()
+      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+        .then(response => console.log('Success!', response))
+        .catch(error => console.error('Error!', error.message))
+    });
+ });
+</script>

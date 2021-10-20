@@ -682,17 +682,5 @@ https://templatemo.com/tm-568-digimedia
   <script src="assets/js/imagesloaded.js"></script>
   <script src="assets/js/custom.js"></script>
 
-  <script>
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbxLDtY5C2X39fI_-l8JTqwCufUsDlxfIa9k6liLxbulmBXh1Zt3nuyww5IU2gWHc08E/exec';
-    const form = document.forms['ss-contact-form'];
-  
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-        .then(response => console.log('Success!', response))
-        .catch(error => console.error('Error!', error.message))
-    })
-  </script>
-
 </body>
 </html>
