@@ -639,27 +639,19 @@ https://templatemo.com/tm-568-digimedia
                         </div>
                       </div>
                     </div>
-                    <div class="col-lg-6">
-                      <fieldset>
-                        <input type="name" name="name" id="name" placeholder="Name" autocomplete="on" required>
-                      </fieldset>
-                      <fieldset>
-                        <input type="text" name="email" id="email" pattern="[^ @]*@[^ @]*" placeholder="Your Email" required="">
-                      </fieldset>
-                      <fieldset>
-                        <input type="subject" name="subject" id="subject" placeholder="Subject" autocomplete="on">
-                      </fieldset>
-                    </div>
-                    <div class="col-lg-6">
-                      <fieldset>
-                        <textarea name="message" type="text" class="form-control" id="message" placeholder="Message" required=""></textarea>  
-                      </fieldset>
-                    </div>
-                    <div class="col-lg-12">
-                      <fieldset>
-                        <button type="submit" id="form-submit" class="main-button ">Send Message Now</button>
-                      </fieldset>
-                    </div>
+                    <form name="ss-contact-form">
+                      <div class="col-lg-6">
+                            <input type="text" name="name" id="name" placeholder="Name" autocomplete="on" required>
+                            <input type="email" name="email" id="email" pattern="[^ @]*@[^ @]*" placeholder="Your Email" required="">
+                            <input type="text" name="subject" id="subject" placeholder="Subject" autocomplete="on">
+                      </div>
+                      <div class="col-lg-6">
+                          <textarea name="message" type="text" id="message" class="form-control" placeholder="Message" required=""></textarea>  
+                      </div>
+                      <div class="col-lg-12">
+                          <button type="submit" class="main-button ">Send Message Now</button>
+                      </div>
+                    </form>
                   </div>
                 </div>
               </div>
@@ -689,6 +681,18 @@ https://templatemo.com/tm-568-digimedia
   <script src="assets/js/animation.js"></script>
   <script src="assets/js/imagesloaded.js"></script>
   <script src="assets/js/custom.js"></script>
+
+  <script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbxLDtY5C2X39fI_-l8JTqwCufUsDlxfIa9k6liLxbulmBXh1Zt3nuyww5IU2gWHc08E/exec';
+    const form = document.forms['ss-contact-form'];
+  
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+        .then(response => console.log('Success!', response))
+        .catch(error => console.error('Error!', error.message))
+    })
+  </script>
 
 </body>
 </html>
