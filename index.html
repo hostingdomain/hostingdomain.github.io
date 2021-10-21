@@ -640,7 +640,7 @@ https://templatemo.com/tm-568-digimedia
                       </div>
                     </div>
                     <div class="alert alert-success d-none my-alert" role="alert">
-                      <strong>Terimakasih!</strong> Pesan Anda sudah Kami terima
+                      <strong>Thank you!</strong> Your message have been recieved.
                     </div>
                       <div class="col-lg-6">
                         <fieldset>
@@ -720,6 +720,7 @@ https://templatemo.com/tm-568-digimedia
           myAlert.classList.toggle('d-none');
           //reset formnya
           form.reset();
+          setTimeout(function(){ myAlert.classList.toggle('d-none'); }, 5000);
           console.log('Success!', response)
         })
         .catch(error => console.error('Error!', error.message))
