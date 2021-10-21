@@ -600,7 +600,7 @@ https://templatemo.com/tm-568-digimedia
           </div>
         </div>
         <div class="col-lg-12 wow fadeInUp" data-wow-duration="0.5s" data-wow-delay="0.25s">
-          <form id="contact" action="" method="post">
+          <form name = "ss-contact-form" id="contact" action="" method="post">
             <div class="row">
               <div class="col-lg-12">
                 <div class="contact-dec">
@@ -639,19 +639,35 @@ https://templatemo.com/tm-568-digimedia
                         </div>
                       </div>
                     </div>
-                    <form name="ss-contact-form">
+                    <div class="alert alert-success d-none my-alert" role="alert">
+                      <strong>Terimakasih!</strong> Pesan Anda sudah Kami terima
+                    </div>
                       <div class="col-lg-6">
+                        <fieldset>
                             <input type="text" name="name" id="name" placeholder="Name" autocomplete="on" required>
+                        </fieldset>
+                        <fieldset>
                             <input type="email" name="email" id="email" pattern="[^ @]*@[^ @]*" placeholder="Your Email" required="">
+                        </fieldset>
+                        <fieldset>    
                             <input type="text" name="subject" id="subject" placeholder="Subject" autocomplete="on">
+                        </fieldset>
                       </div>
                       <div class="col-lg-6">
-                          <textarea name="message" type="text" id="message" class="form-control" placeholder="Message" required=""></textarea>  
+                        <fieldset>
+                          <textarea name="message" type="text" id="message" class="form-control" placeholder="Message" required=""></textarea>
+                        <fieldset> 
                       </div>
                       <div class="col-lg-12">
-                          <button type="submit" class="main-button ">Send Message Now</button>
+                        <fieldset>
+                          <button type="submit" class="main-button btn-kirim">Send Message Now</button>
+
+                          <button class="btn btn-primary btn-loading d-none" type="button" disabled>
+                            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                            Loading...
+                          </button>
+                        </fieldset>
                       </div>
-                    </form>
                   </div>
                 </div>
               </div>
@@ -681,6 +697,34 @@ https://templatemo.com/tm-568-digimedia
   <script src="assets/js/animation.js"></script>
   <script src="assets/js/imagesloaded.js"></script>
   <script src="assets/js/custom.js"></script>
+
+  <script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbxLDtY5C2X39fI_-l8JTqwCufUsDlxfIa9k6liLxbulmBXh1Zt3nuyww5IU2gWHc08E/exec';
+    const form = document.forms['ss-contact-form']
+    const btnKirim = document.querySelector('.btn-kirim');
+    const btnLoading = document.querySelector('.btn-loading');
+    const myAlert = document.querySelector('.my-alert');
+  
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      //ketika tombol submit diklik
+      //tampilkan tombol loading hilangkan tombol kirim
+      btnLoading.classList.toggle('d-none');
+      btnKirim.classList.toggle('d-none');
+      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+        .then(response => {
+          //tampilkan tombol kirim hilangkan tombol loading
+          btnLoading.classList.toggle('d-none');
+          btnKirim.classList.toggle('d-none');
+          //tampilkan alert
+          myAlert.classList.toggle('d-none');
+          //reset formnya
+          form.reset();
+          console.log('Success!', response)
+        })
+        .catch(error => console.error('Error!', error.message))
+    });
+  </script>
 
 </body>
 </html>
