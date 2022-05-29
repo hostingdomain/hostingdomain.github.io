@@ -1476,7 +1476,8 @@ ul.social_icon li a:hover {
 .review {
      padding-top: 90px;
      padding-bottom: 90px;
-     background: url(../images/banner.jpg);
+     /* background: url(../images/banner.jpg); */
+     background-color: black;
      background-repeat: no-repeat;
 }
 .review .titlepage {
